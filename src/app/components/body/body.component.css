@@ -33,6 +33,9 @@ i {
 .divfi3 {
     justify-content: space-between;
     justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
     margin-top: 60px;
 }
 
