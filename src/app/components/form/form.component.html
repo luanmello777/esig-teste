@@ -1,0 +1,14 @@
+<div class="container divform rounded">
+    <div class="divfilter">
+        <label for="dateFilter"></label>
+        <select class="filter rounded" id="dateFilter" [(ngModel)]="selectedDays" (ngModelChange)="onDateFilterChange($event)">
+          <option value="15">Últimos 15 dias</option>
+          <option value="30">Últimos 30 dias</option>
+          <option value="60">Últimos 60 dias</option>
+        </select>
+      </div>
+
+      <div>
+        <p-chart type="line" [data]="data" [options]="options" />
+      </div>
+</div>

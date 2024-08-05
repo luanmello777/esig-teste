@@ -1,0 +1,57 @@
+.grid1 {
+    background-color: white;
+}
+
+.grid2 {
+    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.grid2 > p {
+    font-weight: bold;
+}
+
+
+.image {
+    height: 35px;
+    width: 35px;
+
+}
+
+.modal {
+    background: linear-gradient(300deg,  #3f1ae4,  rgb(226, 71, 213));
+    background-size: 180% 180%;
+    animation: gradient-animation 5s ease infinite;
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+.btndash {
+    margin-top: 100px;
+    background-color: transparent;
+    border: 1px white solid;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.btntare {
+    margin-top: 15px;
+    background-color: transparent;
+    border: 1px white solid;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+

@@ -1,0 +1,49 @@
+.divpai1 {
+  justify-content: space-between;
+  padding-top: 60px;
+  padding-left: 30px;
+}
+
+.divfi1 {
+  height: 60px;
+}
+
+.divfi2 {
+  height: 60px;
+  padding-top: 10px;
+}
+
+.btntarefa {
+  background-color: #3f1ae4;
+  font-weight: 500;
+}
+
+.btntarefa,
+i {
+  padding-right: 10px;
+}
+
+
+
+.divpai2 {
+    justify-content: space-between;
+    justify-content: center;
+}
+
+.divfi3 {
+    justify-content: space-between;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.divfi4 {
+    justify-content: space-between;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.divfi5 {
+    justify-content: space-between;
+    justify-content: center;
+    margin-top: 60px;
+}
