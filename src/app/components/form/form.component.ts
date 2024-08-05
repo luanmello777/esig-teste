@@ -14,28 +14,28 @@ export class FormComponent implements OnInit {
   options: any;
   allData: any;
   selectedDays: number = 15; // Propriedade para armazenar o valor selecionado
-
+  
   ngOnInit() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
+  
     this.allData = {
-      labels: ['01/06', '02/06', '03/06', '04/06', '05/06', '06/06', '07/06', '08/06', '09/06', '10/06', '11/06', '12/06', '13/06', '14/06', '15/06'],
+      labels: this.generateLast60DaysLabels(),
       datasets: [
         {
           label: 'Tarefas concluídas por dia',
-          data: [5, 10, 15, 20, 25, 10, 35, 40, 45, 25, 39, 50, 45, 70],
+          data: this.generateRandomData(60), // Gera dados aleatórios para 60 dias
           fill: false,
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           tension: 0.4
         },
       ]
     };
-
+  
     this.updateChartData(this.selectedDays);
-
+  
     this.options = {
       maintainAspectRatio: false,
       aspectRatio: 0.6,
@@ -68,15 +68,15 @@ export class FormComponent implements OnInit {
       }
     };
   }
-
+  
   onDateFilterChange(days: number) {
     this.updateChartData(days);
   }
-
+  
   updateChartData(days: number) {
     const endIndex = this.allData.labels.length;
     const startIndex = Math.max(endIndex - days, 0);
-
+  
     this.data = {
       labels: this.allData.labels.slice(startIndex, endIndex),
       datasets: [
@@ -89,5 +89,28 @@ export class FormComponent implements OnInit {
         },
       ]
     };
+  }
+  
+  generateLast60DaysLabels(): string[] {
+    const labels: string[] = [];
+    const today = new Date();
+  
+    for (let i = 59; i >= 0; i--) {
+      const pastDate = new Date();
+      pastDate.setDate(today.getDate() - i);
+      const day = String(pastDate.getDate()).padStart(2, '0');
+      const month = String(pastDate.getMonth() + 1).padStart(2, '0');
+      labels.push(`${day}/${month}`);
+    }
+  
+    return labels;
+  }
+  
+  generateRandomData(days: number): number[] {
+    const data: number[] = [];
+    for (let i = 0; i < days; i++) {
+      data.push(Math.floor(Math.random() * 100)); // Gera dados aleatórios entre 0 e 100
+    }
+    return data;
   }
 }
