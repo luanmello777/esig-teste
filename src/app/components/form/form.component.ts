@@ -1,116 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartModule } from 'primeng/chart';
-import { FormsModule } from '@angular/forms'; // Import FormsModule para ngModel
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TaskService } from '../task/task.service';
+
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [ChartModule, FormsModule], // Adicione FormsModule aqui
+  imports: [],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  data: any;
-  options: any;
-  allData: any;
-  selectedDays: number = 15; // Propriedade para armazenar o valor selecionado
-  
-  ngOnInit() {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-  
-    this.allData = {
-      labels: this.generateLast60DaysLabels(),
-      datasets: [
-        {
-          label: 'Tarefas concluídas por dia',
-          data: this.generateRandomData(60), // Gera dados aleatórios para 60 dias
-          fill: false,
-          borderColor: documentStyle.getPropertyValue('--blue-500'),
-          tension: 0.4
-        },
-      ]
-    };
-  
-    this.updateChartData(this.selectedDays);
-  
-    this.options = {
-      maintainAspectRatio: false,
-      aspectRatio: 0.6,
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
-          }
-        }
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        },
-        y: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        }
+  taskForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private taskService: TaskService) {
+    this.taskForm = this.fb.group({
+      title: ['', Validators.required],
+      details: ['', Validators.required],
+      date: ['', Validators.required],
+      priority: ['', Validators.required],
+      assignees: ['', Validators.required],
+      file: [null]
+    });
+  }
+
+  ngOnInit(): void {}
+
+  onSubmit(): void {
+    if (this.taskForm.valid) {
+      const taskData = this.taskForm.value;
+      // Tratar o arquivo anexo
+      if (this.taskForm.get('file')?.value) {
+        const file = (this.taskForm.get('file')?.value as FileList)[0];
+        taskData.file = file;
       }
-    };
-  }
-  
-  onDateFilterChange(days: number) {
-    this.updateChartData(days);
-  }
-  
-  updateChartData(days: number) {
-    const endIndex = this.allData.labels.length;
-    const startIndex = Math.max(endIndex - days, 0);
-  
-    this.data = {
-      labels: this.allData.labels.slice(startIndex, endIndex),
-      datasets: [
-        {
-          label: this.allData.datasets[0].label,
-          data: this.allData.datasets[0].data.slice(startIndex, endIndex),
-          fill: false,
-          borderColor: this.allData.datasets[0].borderColor,
-          tension: 0.4
-        },
-      ]
-    };
-  }
-  
-  generateLast60DaysLabels(): string[] {
-    const labels: string[] = [];
-    const today = new Date();
-  
-    for (let i = 59; i >= 0; i--) {
-      const pastDate = new Date();
-      pastDate.setDate(today.getDate() - i);
-      const day = String(pastDate.getDate()).padStart(2, '0');
-      const month = String(pastDate.getMonth() + 1).padStart(2, '0');
-      labels.push(`${day}/${month}`);
+      this.taskService.addTask(taskData);
+      this.taskForm.reset();
+    } else {
+      // Marcar todos os campos como tocados para exibir as mensagens de erro
+      this.taskForm.markAllAsTouched();
     }
-  
-    return labels;
   }
-  
-  generateRandomData(days: number): number[] {
-    const data: number[] = [];
-    for (let i = 0; i < days; i++) {
-      data.push(Math.floor(Math.random() * 100)); // Gera dados aleatórios entre 0 e 100
-    }
-    return data;
+
+  // Método para tratar a seleção do arquivo
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    this.taskForm.patchValue({
+      file: file
+    });
   }
 }

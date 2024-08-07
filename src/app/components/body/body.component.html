@@ -1,67 +1,63 @@
-<div class="divpai1 d-flex row w-100">
-    <div class="divfi1 col-12">
-        <h6 style="font-weight: bolder; line-height: 5px;">Olá Luan,</h6>
-        <h6 style="font-weight: 400;" class="text-secondary">Bem-vindo ao seu gestor de tarefas!</h6>
+<div class="divpai1 d-flex row">
+    <div class="divfi1 col-12 col-sm-9 col-lg-8 col-xl-9 container">
+      <h6 style="font-weight: bolder; line-height: 5px;">Olá Luan,</h6>
+      <h6 style="font-weight: 400;" class="text-secondary">Bem-vindo ao seu gestor de tarefas!</h6>
     </div>
-
-
-    <div class="divfi2 col-6">
-        <button class="btn btntarefa text-white"><i class="bi bi-plus-square"></i>Nova Tarefa</button>
-    </div>
-</div>
-
-
-<div class="divpai2 d-flex row">
-
-    <div class="divfi3 col-12 row">
-        <div class="bg-white col-10 d-flex rounded" style="justify-content: space-between;">
-
-            <div style="padding-top: 42px; padding-left: 16px;">
-                <h3 style="line-height: 10px; font-weight: bold;">4</h3>
-                <p style="font-weight: bold;">to do</p>
+  
+    <div class="divfi2 col-6 col-sm-3 col-lg-3 col-xl-2">
+      <button class="btn btntarefa text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="bi bi-plus-square"></i>Nova Tarefa
+      </button>
+  
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Tarefa</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-            <div style="padding-top: 30px;  padding-right: 16px;">
-                <div class="rounded"
-                    style="height: 45px; width: 45px; background-color: #CDE8E5;  display: grid; place-items: center;">
-                    <i class="bi bi-opencollective" style="color: blue; font-size: 25px; padding: 0;"></i>
+            <div class="modal-body">
+              <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                  <label for="taskTitle" class="form-label">Título da Tarefa</label>
+                  <input type="text" id="taskTitle" class="form-control" formControlName="title">
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="divfi4 col-12 row">
-        <div class="bg-white col-10 d-flex rounded" style="justify-content: space-between;">
-
-            <div style="padding-top: 42px; padding-left: 16px;">
-                <h3 style="line-height: 10px; font-weight: bold;">2</h3>
-                <p style="font-weight: bold;">doing</p>
-            </div>
-
-            <div style="padding-top: 30px;  padding-right: 16px;">
-                <div class="rounded"
-                    style="height: 45px; width: 45px; background-color: #E49BFF;  display: grid; place-items: center;">
-                    <i class="bi bi-calendar2-week-fill" style="color: purple; font-size: 25px; padding: 0;"></i>
+                <div class="mb-3">
+                  <label for="taskDetails" class="form-label">Detalhes</label>
+                  <textarea id="taskDetails" class="form-control" formControlName="details"></textarea>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="divfi5 col-12 row">
-        <div class="bg-white col-10 d-flex rounded" style="justify-content: space-between;">
-
-            <div style="padding-top: 42px; padding-left: 16px;">
-                <h3 style="line-height: 10px; font-weight: bold;">64</h3>
-                <p style="font-weight: bold;">done</p>
-            </div>
-
-            <div style="padding-top: 30px;  padding-right: 16px;">
-                <div class="rounded"
-                    style="height: 45px; width: 45px; background-color: #B3E2A7; display: grid; place-items: center;">
-                    <i class="bi bi-check-circle-fill" style="color: green; font-size: 25px; padding: 0;"></i>
+                <div class="mb-3">
+                  <label for="taskDate" class="form-label">Data</label>
+                  <input type="date" id="taskDate" class="form-control" formControlName="date">
                 </div>
+                <div class="mb-3">
+                  <label for="taskPriority" class="form-label">Prioridade</label>
+                  <select id="taskPriority" class="form-select" formControlName="priority">
+                    <option value="alta">Alta</option>
+                    <option value="media">Média</option>
+                    <option value="baixa">Baixa</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="taskAssignees" class="form-label">Responsáveis</label>
+                  <input type="text" id="taskAssignees" class="form-control" formControlName="assignees">
+                </div>
+                <div class="mb-3">
+                  <label for="taskFile" class="form-label">Anexo</label>
+                  <input type="file" id="taskFile" class="form-control" (change)="onFileChange($event)">
+                </div>
+  
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btntarefa text-white">
+                    <i class="bi bi-plus-square"></i>Criar Tarefa
+                  </button>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
-
-
-        
+      </div>
+    </div>
+  </div>
+  

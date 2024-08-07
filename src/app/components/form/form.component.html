@@ -1,14 +1,53 @@
-<div class="container divform rounded">
-    <div class="divfilter">
-        <label for="dateFilter"></label>
-        <select class="filter rounded" id="dateFilter" [(ngModel)]="selectedDays" (ngModelChange)="onDateFilterChange($event)">
-          <option value="15">Últimos 15 dias</option>
-          <option value="30">Últimos 30 dias</option>
-          <option value="60">Últimos 60 dias</option>
-        </select>
-      </div>
+<div class="divfi2 col-6 col-sm-3 col-lg-3 col-xl-2">
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Tarefa</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form formGroup="taskForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="taskTitle" class="form-label">Título da Tarefa</label>
+              <input type="text" id="taskTitle" class="form-control" formControlName="title">
+            </div>
+            <div class="mb-3">
+              <label for="taskDetails" class="form-label">Detalhes da Tarefa</label>
+              <textarea id="taskDetails" class="form-control" formControlName="details"></textarea>
+            </div>
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label for="taskDate" class="form-label">Data</label>
+                <input type="date" id="taskDate" class="form-control" formControlName="date">
+              </div>
+              <div class="mb-3 col-6">
+                <label for="taskPriority" class="form-label">Prioridade</label>
+                <select id="taskPriority" class="form-select" formControlName="priority">
+                  <option value="alta">Alta</option>
+                  <option value="media">Média</option>
+                  <option value="baixa">Baixa</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="taskAssignees" class="form-label">Responsáveis</label>
+              <input type="text" id="taskAssignees" class="form-control" formControlName="assignees">
+            </div>
+            <div class="mb-3">
+              <label for="taskFile" class="form-label">Anexo</label>
+              <input type="file" id="taskFile" class="form-control" formControlName="file">
+            </div>
 
-      <div>
-        <p-chart type="line" [data]="data" [options]="options" />
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btntarefa  text-white"><i class="bi bi-plus-square"></i>Criar
+                Tarefa</button>
+            </div>
+          </form>
+        </div>
       </div>
+    </div>
+  </div>
 </div>

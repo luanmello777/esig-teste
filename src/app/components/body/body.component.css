@@ -1,6 +1,6 @@
 .divpai1 {
   justify-content: space-between;
-  padding-top: 60px;
+  padding-top: 180px;
   padding-left: 30px;
 }
 
@@ -10,7 +10,6 @@
 
 .divfi2 {
   height: 60px;
-  padding-top: 10px;
 }
 
 .btntarefa {
@@ -36,17 +35,17 @@ i {
     justify-items: center;
     align-items: center;
     align-content: center;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .divfi4 {
     justify-content: space-between;
     justify-content: center;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .divfi5 {
     justify-content: space-between;
     justify-content: center;
-    margin-top: 60px;
+    margin-top: 20px;
 }

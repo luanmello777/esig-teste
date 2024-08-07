@@ -1,0 +1,84 @@
+<div class="container mt-4 row bg-white rounded">
+  <div class="row mb-3" style="padding: 60px 60px 60px 60px;">
+    <div class="col-3">
+      <div class="dropdown row">
+        <button class="btn dropdown-toggle rounded" style="border: 1px solid hsla(204, 88%, 68%, 0.438);" for="filterProjetos" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Projetos
+        </button>
+        <ul class="dropdown-menu" id="filterProjetos">
+          <li><a class="dropdown-item" href="#" value="done">Feito</a></li>
+          <li><a class="dropdown-item" href="#" value="inProgress">Em Progresso</a></li>
+          <li><a class="dropdown-item" href="#" value="pending">Pendente</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-2">
+      <button class="btn dropdown-toggle" style="border: 1px solid hsla(204, 88%, 68%, 0.438);"  for="filterStatus" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Prioridade
+      </button>
+      <ul class="dropdown-menu" id="filterStatus" (change)="applyFilter()">
+        <li><a class="dropdown-item" href="#" value="done">Alta</a></li>
+        <li><a class="dropdown-item" href="#" value="inProgress">Média</a></li>
+        <li><a class="dropdown-item" href="#" value="pending">Baixa</a></li>
+      </ul>
+    </div>
+
+    <div class="col-5" style="padding-left: 60px;">
+      <button class="btn dropdown-toggle" style="border: 1px solid hsla(204, 88%, 68%, 0.438);" for="filterPriority" type="button" data-bs-toggle="dropdown"
+      aria-expanded="false">
+    Status
+    </button>
+    <ul class="dropdown-menu" id="filterPriority" (change)="applyFilter()">
+      <li><a class="dropdown-item" href="#" value="high">Feito</a></li>
+      <li><a class="dropdown-item" href="#" value="medium">Em Progresso</a></li>
+      <li><a class="dropdown-item" href="#" value="low">Pendente</a></li>
+    </ul>
+    </div>
+    <div class="col" style="padding-left: 20px;">
+      <button class="btn dropdown-toggle" style="border: 1px solid hsla(204, 88%, 68%, 0.438);" for="filterDate" type="button" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      Últimos 30 dias
+    </button>
+    <ul class="dropdown-menu" id="filterDate" (change)="applyFilter()">
+       <input id="filterDate" type="date" class="form-control" (change)="applyFilter()">
+    </ul>
+  </div>
+  <table class="table table-striped" style="margin-top: 30px;">
+    <thead>
+      <tr>
+        <th>Tarefa</th>
+        <th>Prioridade</th>
+        <th>Status</th>
+        <th>Responsável</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>asdasdsadsad</td>
+        <td>asdsad</td>
+        <td>asdasd</td>
+        <td>asdasd</td>
+        <td>asdasd</td>
+      </tr>
+
+      <tr>
+        <td>asdasdsadsad</td>
+        <td>asdsad</td>
+        <td>asdasd</td>
+        <td>asdasd</td>
+        <td>asdasd</td>
+      </tr>
+      
+      <tr>
+        <td>asdasdsadsad</td>
+        <td>asdsad</td>
+        <td>asdasd</td>
+        <td>asdasd</td>
+        <td>asdasd</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

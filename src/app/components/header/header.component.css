@@ -3,7 +3,6 @@
 }
 
 .grid2 {
-    background-color: blueviolet;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -21,21 +20,7 @@
 }
 
 .modal {
-    background: linear-gradient(300deg,  #3f1ae4,  rgb(226, 71, 213));
-    background-size: 180% 180%;
-    animation: gradient-animation 5s ease infinite;
-  }
-  
-  @keyframes gradient-animation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    background-color: #3f1ae4;
   }
 
 .btndash {
